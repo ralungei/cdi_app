@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,12 +22,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="house" translatesAutoresizingMaskIntoConstraints="NO" id="riv-eR-Pub">
-                                <rect key="frame" x="273" y="151" width="478" height="466"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="house" translatesAutoresizingMaskIntoConstraints="NO" id="riv-eR-Pub">
+                                <rect key="frame" x="170" y="60" width="684" height="648"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="riv-eR-Pub" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="150" id="8FI-8k-3C0"/>
+                            <constraint firstItem="riv-eR-Pub" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="40" id="AhM-ue-exM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="riv-eR-Pub" secondAttribute="trailing" constant="150" id="Yip-Ep-rRr"/>
+                            <constraint firstItem="riv-eR-Pub" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kdu-Pg-3po"/>
+                            <constraint firstItem="riv-eR-Pub" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="nNf-CA-Uzc"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>

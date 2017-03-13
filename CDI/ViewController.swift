@@ -9,21 +9,28 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var gestion: UIView!
+    
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-//        gestionView.layer.cornerRadius = 12
+        gestion.layer.cornerRadius = 12
+        gestion.isUserInteractionEnabled = true
         
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
 
 
