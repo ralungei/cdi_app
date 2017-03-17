@@ -16,6 +16,7 @@ class ManagementTableViewController: UITableViewController {
     //MARK: Properties
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
+    
     var animals = [Animal]()
     
     override func viewDidLoad() {
@@ -122,25 +123,26 @@ class ManagementTableViewController: UITableViewController {
         super.prepare(for: segue, sender: sender)
         
         switch (segue.identifier ?? ""){
+            
             case "AddItem":
-            os_log("Adding a new animal.", log: OSLog.default, type: .debug)
+                os_log("Adding a new animal.", log: OSLog.default, type: .debug)
         
             case "ShowDetail":
-            guard let animalDetailViewController = segue.destination as? AnimalDetailViewController
-                else {
-                    fatalError("Unexpected destination: \(segue.destination)")
-            }
+                guard let animalDetailViewController = segue.destination as? AnimalDetailViewController
+                    else {
+                        fatalError("Unexpected destination: \(segue.destination)")
+                }
             
-            guard let selectedAnimalCell = sender as? ManagementTableViewCell else {
-                fatalError("Unexpected sender: \(sender)")
-            }
+                guard let selectedAnimalCell = sender as? ManagementTableViewCell else {
+                    fatalError("Unexpected sender: \(sender)")
+                }
             
-            guard let indexPath = tableView.indexPath(for: selectedAnimalCell) else{
-                fatalError("The selected cell is not being displayed by the table")
-            }
+                guard let indexPath = tableView.indexPath(for: selectedAnimalCell) else{
+                    fatalError("The selected cell is not being displayed by the table")
+                }
             
-            let selectedAnimal = animals[indexPath.row]
-            animalDetailViewController.animal = selectedAnimal
+                let selectedAnimal = animals[indexPath.row]
+                animalDetailViewController.animal = selectedAnimal
             
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
@@ -155,14 +157,22 @@ class ManagementTableViewController: UITableViewController {
     // MARK: - Actions
     
     @IBAction func unwindToAnimalList(sender: UIStoryboardSegue){
-        if let sourceViewController = sender.source as?
-            AnimalViewController, let animal = sourceViewController.animal {
+        if let sourceViewController = sender.source as? AnimalViewController, let animal = sourceViewController.animal {
             
-            // Add a new meal.
-            let newIndexPath = IndexPath(row: animals.count, section: 0)
-            
-            animals.append(animal)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                // Update an existing animal.
+                animals[selectedIndexPath.row] = animal
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+                os_log("INSIDE FLAG!", log: OSLog.default, type: .debug)
+
+            }
+            else {
+                // Add a new animal.
+                let newIndexPath = IndexPath(row: animals.count, section: 0)
+                
+                animals.append(animal)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
         }
     }
     
@@ -195,12 +205,12 @@ class ManagementTableViewController: UITableViewController {
         let fecha = userCalendar.date(from: fechaComp)
         
         
-        guard let animal1 = Animal(idAnimal: "0001", tipo: "vaca", codFamilia: "0001", raza: "Holstein", sexo: "Hembra", fecha: fecha!, peso: 606, edad: 11, estado: "Lactante", cuarentena: true)
+        guard let animal1 = Animal(idAnimal: "0001", tipo: "vaca", codFamilia: "0001", raza: "holstein", sexo: "hembra", fecha: fecha!, peso: 606, edad: 11, estado: "lLactante", cuarentena: true)
             else {
                 fatalError("Unable to instantiate animal1")
         }
         
-        guard let animal2 = Animal(idAnimal: "0002", tipo: "conejo", codFamilia: "0001", raza: "Holstein", sexo: "Varon", fecha: fecha!, peso: 645, edad: 11, estado: "Lactante", cuarentena: false)
+        guard let animal2 = Animal(idAnimal: "0002", tipo: "conejo", codFamilia: "0001", raza: "holstein", sexo: "varon", fecha: fecha!, peso: 645, edad: 11, estado: "lactante", cuarentena: false)
             else {
                 fatalError("Unable to instantiate animal2")
         }

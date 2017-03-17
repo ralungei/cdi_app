@@ -82,13 +82,10 @@ class AnimalDetailViewController: UIViewController {
         super.prepare(for: segue, sender: sender)
         
         if segue.identifier == "Edit" {
-            let navigationViewController = segue.destination as?
-                UINavigationController
-            
-            guard let animalEditViewController = navigationViewController?.topViewController as? AnimalViewController
-            else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
+            guard let animalEditViewController = segue.destination as? AnimalViewController
+                else {
+                    fatalError("Unexpected destination: \(segue.destination)")
+                }
             
             animalEditViewController.animal = animal
         }

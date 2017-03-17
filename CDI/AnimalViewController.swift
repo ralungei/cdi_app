@@ -9,11 +9,11 @@
 import UIKit
 import os.log
 
-class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
-
-    var animal: Animal?
+class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
     // MARK: Properties
+    var animal: Animal?
+    
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var codFamTextField: UITextField!
     @IBOutlet weak var animalTextField: UITextField!
@@ -25,12 +25,32 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
     @IBOutlet weak var fechaPicker: UIDatePicker!
     @IBOutlet weak var imagen: UIImageView!
 
-    
     @IBOutlet weak var saveButton: UIBarButtonItem!
 
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        
+        let isPresentingInAddAnimalMode = presentingViewController is UINavigationController
+        
+        if (isPresentingInAddAnimalMode){
+            os_log("1!", log: OSLog.default, type: .debug)
+
+            dismiss(animated: true, completion: nil)
+        }
+        else if let owningNavigationController = navigationController{
+            os_log("2!", log: OSLog.default, type: .debug)
+
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("The MealViewController is not inside a navigation controller.")
+        }
     }
+    
+    // MARK: Picker view options
+    var animalOptions = ["vaca", "cabra", "oveja", "gallina", "conejo", "cerdo"]
+    var estadoOptions = ["vacio"]
+    var sexoOptions = ["hembra", "varon"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +70,8 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
         idTextField.delegate = self
         // Set up views if editing an existing animal.
         if let animal = animal {
+            
+            navigationItem.title = ""
             let tipo = animal.tipo
             
             idTextField.text = animal.idAnimal
@@ -90,7 +112,55 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
         
         // Enable the Save button only if the text field has a valid Meal name.
         updateSaveButtonState()
+        
+        // Pickers
+        
+        let animalPickerView = UIPickerView()
+        animalPickerView.delegate = self
+        animalPickerView.tag = 0
+        animalTextField.inputView = animalPickerView
+        
+        let sexoPickerView = UIPickerView()
+        sexoPickerView.delegate = self
+        sexoPickerView.tag = 1
+        sexoTextField.inputView = sexoPickerView
+        
+        
     }
+    
+    //MARK: Picker funcs
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if (pickerView.tag == 0){
+            return animalOptions.count
+        }
+        else{
+            return sexoOptions.count
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if (pickerView.tag == 0){
+            return animalOptions[row]
+        }
+        else{
+            return sexoOptions[row]
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if (pickerView.tag == 0){
+            animalTextField.text = animalOptions[row]
+        }
+        else{
+            sexoTextField.text = sexoOptions[row]
+        }
+    }
+    
+    
     
     //MARK: UITextFieldDelegate
     
@@ -116,6 +186,8 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
         
         super.prepare(for: segue, sender: sender)
         
+        // Configure the destination view controller only when the save button is pressed.
+        
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
             os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
             return
@@ -139,6 +211,8 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
         else {
             cuarentena = true
         }
+        
+        // Set the animal to be passed to AnimalTableViewController after the unwind segue.
         
         animal = Animal(idAnimal: id, tipo: tipo, codFamilia: codFam, raza: raza, sexo: sexo, fecha: fecha, peso: peso, edad: edad, estado: estado, cuarentena: cuarentena)
     }
