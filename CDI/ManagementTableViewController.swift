@@ -16,6 +16,7 @@ class ManagementTableViewController: UITableViewController {
     //MARK: Properties
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
     
     var animals = [Animal]()
     
@@ -26,8 +27,15 @@ class ManagementTableViewController: UITableViewController {
         menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
+        navigationItem.leftBarButtonItem = editButtonItem
+        navigationItem.leftBarButtonItem?.image = deleteButton.image
+        
+        //deleteButton.buttonGroup = editButtonItem.buttonGroup
+        //deleteButton.action = editButtonItem.action
+        
         // Load the sample data
-        loadSampleAnimals()
+        //loadSampleAnimals()
+        parseCSV()
     }
     
     override func didReceiveMemoryWarning() {
@@ -70,34 +78,38 @@ class ManagementTableViewController: UITableViewController {
         }
         cell.sexo.text = animal.sexo
         
+        /*
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "dd/MM/yyyy"
         let fechaString = dateformatter.string(from: animal.fecha)
         cell.fecha.text = fechaString
+         */
+        cell.fecha.text = animal.fecha
 
 
         return cell
     }
     
-    /*
+    
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the specified item to be editable.
      return true
      }
-     */
     
-    /*
+    
+    
      // Override to support editing the table view.
      override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
      if editingStyle == .delete {
      // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
+        animals.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
      } else if editingStyle == .insert {
      // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
      }
      }
-     */
+    
     
     /*
      // Override to support rearranging the table view.
@@ -163,8 +175,6 @@ class ManagementTableViewController: UITableViewController {
                 // Update an existing animal.
                 animals[selectedIndexPath.row] = animal
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
-                os_log("INSIDE FLAG!", log: OSLog.default, type: .debug)
-
             }
             else {
                 // Add a new animal.
@@ -205,18 +215,36 @@ class ManagementTableViewController: UITableViewController {
         let fecha = userCalendar.date(from: fechaComp)
         
         
-        guard let animal1 = Animal(idAnimal: "0001", tipo: "vaca", codFamilia: "0001", raza: "holstein", sexo: "hembra", fecha: fecha!, peso: 606, edad: 11, estado: "lLactante", cuarentena: true)
+        guard let animal1 = Animal(idAnimal: "0001", tipo: "vaca", codFamilia: "0001", raza: "holstein", sexo: "hembra", fecha: "12/12/1996", peso: 606, edad: 11, estado: "lLactante", cuarentena: true)
             else {
                 fatalError("Unable to instantiate animal1")
         }
         
-        guard let animal2 = Animal(idAnimal: "0002", tipo: "conejo", codFamilia: "0001", raza: "holstein", sexo: "varon", fecha: fecha!, peso: 645, edad: 11, estado: "lactante", cuarentena: false)
+        guard let animal2 = Animal(idAnimal: "0002", tipo: "conejo", codFamilia: "0001", raza: "holstein", sexo: "varon", fecha: "12/12/1996", peso: 645, edad: 11, estado: "lactante", cuarentena: false)
             else {
                 fatalError("Unable to instantiate animal2")
         }
         
         animals += [animal1, animal2]
         
+    }
+    
+    private func parseCSV() {
+        let path = Bundle.main.path(forResource: "data", ofType: "csv")
+        do {
+            let csv = try CSV(contentsOfURL: path!)
+            let rows = csv.rows
+            print(rows)
+            
+            for row in rows {
+                let animal = Animal(idAnimal: row["idAnimal"]!, tipo: row["tipo"]!, codFamilia: row["codFamilia"]!, raza: row["raza"]!, sexo: row["sexo"]!, fecha: row["fecha"]!, peso: Float(row["peso"]!)!, edad: Int(row["edad"]!)!, estado: row["estado"]!, cuarentena: Bool(row["cuarentena"]!)!)
+               
+                animals.append(animal!)
+            }
+            
+        } catch let err as NSError{
+            print(err.debugDescription)
+        }
     }
     
 

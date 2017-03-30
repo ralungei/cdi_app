@@ -17,7 +17,7 @@ class Animal {
     var codFamilia: String
     var raza: String
     var sexo: String
-    var fecha: Date
+    var fecha: String
     var peso: Float
     var edad: Int
     var estado: String
@@ -25,7 +25,7 @@ class Animal {
     
     //MARK: Initialization
     
-    init?(idAnimal: String, tipo:String, codFamilia: String, raza: String, sexo: String, fecha: Date, peso: Float, edad: Int, estado: String, cuarentena: Bool) {
+    init?(idAnimal: String, tipo:String, codFamilia: String, raza: String, sexo: String, fecha: String, peso: Float, edad: Int, estado: String, cuarentena: Bool) {
         
         // The name must not be empty
         guard !idAnimal.isEmpty else{

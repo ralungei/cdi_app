@@ -29,16 +29,12 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
 
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         
-        let isPresentingInAddAnimalMode = presentingViewController is UINavigationController
+        let isPresentingInAddAnimalMode = presentingViewController is SWRevealViewController
         
         if (isPresentingInAddAnimalMode){
-            os_log("1!", log: OSLog.default, type: .debug)
-
             dismiss(animated: true, completion: nil)
         }
         else if let owningNavigationController = navigationController{
-            os_log("2!", log: OSLog.default, type: .debug)
-
             owningNavigationController.popViewController(animated: true)
         }
         else {
@@ -89,7 +85,9 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
                 cuarentenaControl.selectedSegmentIndex = 1
             }
             
-            fechaPicker.date = animal.fecha
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            fechaPicker.date = dateFormatter.date(from: animal.fecha)!
             
             switch tipo {
             case "gallina":
@@ -198,10 +196,13 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
         let codFam = codFamTextField.text ?? ""
         let raza = razaTextField.text ?? ""
         let sexo = sexoTextField.text ?? ""
-        let fecha = fechaPicker.date
         let peso = Float(pesoTextField.text!) ?? 0.0
         let edad = 0
         let estado = estadoTextField.text ?? ""
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let fecha = dateFormatter.string(from: fechaPicker.date)
         
         let valorCuarentena = cuarentenaControl.selectedSegmentIndex
         let cuarentena: Bool

@@ -12,11 +12,14 @@ class BackTableVC: UITableViewController {
     
     var TableArray = [String]()
     
+    @IBOutlet weak var line: UILabel!
     
     override func viewDidLoad() {
         TableArray = ["Gestión","Alimentación","Nacimientos", "Sanidad", "Seguridad"]
         
         tableView.backgroundView = UIImageView(image: UIImage(named: "menu_background"))
+        
+        line.underlined()
 
     }
     

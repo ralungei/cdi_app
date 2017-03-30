@@ -1,0 +1,207 @@
+
+/* Class = "UILabel"; text = "Sexo"; ObjectID = "27b-w6-Rlr"; */
+"27b-w6-Rlr.text" = "Sexo";
+
+/* Class = "UIViewController"; title = "Reveal"; ObjectID = "2CE-Vm-2rG"; */
+"2CE-Vm-2rG.title" = "Reveal";
+
+/* Class = "UILabel"; text = "Sexo"; ObjectID = "3zJ-um-KY6"; */
+"3zJ-um-KY6.text" = "Sexo";
+
+/* Class = "UILabel"; text = "Sanidad"; ObjectID = "40R-m9-fPK"; */
+"40R-m9-fPK.text" = "Sanidad";
+
+/* Class = "UILabel"; text = "Nacimientos"; ObjectID = "4Nk-z7-Uls"; */
+"4Nk-z7-Uls.text" = "Nacimientos";
+
+/* Class = "UILabel"; text = "AppName"; ObjectID = "4lK-lY-8qo"; */
+"4lK-lY-8qo.text" = "AppName";
+
+/* Class = "UITabBarItem"; title = "Conejos"; ObjectID = "5iv-7t-EnX"; */
+"5iv-7t-EnX.title" = "Conejos";
+
+/* Class = "UILabel"; text = "Sanidad"; ObjectID = "6DJ-C1-wr1"; */
+"6DJ-C1-wr1.text" = "Sanidad";
+
+/* Class = "UITabBarItem"; title = "Aves"; ObjectID = "7CH-Rw-3zK"; */
+"7CH-Rw-3zK.title" = "Aves";
+
+/* Class = "UINavigationItem"; title = "Nuevo Animal"; ObjectID = "8fe-S2-k8g"; */
+"8fe-S2-k8g.title" = "Nuevo Animal";
+
+/* Class = "UIBarButtonItem"; title = "OK"; ObjectID = "8ky-fv-dha"; */
+"8ky-fv-dha.title" = "OK";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "BjX-Mh-a4b"; */
+"BjX-Mh-a4b.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Aves"; ObjectID = "DQs-sT-Bw2"; */
+"DQs-sT-Bw2.title" = "Aves";
+
+/* Class = "UILabel"; text = "Raza"; ObjectID = "DcD-J8-RE0"; */
+"DcD-J8-RE0.text" = "Raza";
+
+/* Class = "UILabel"; text = "Raza"; ObjectID = "EWQ-sb-dmN"; */
+"EWQ-sb-dmN.text" = "Raza";
+
+/* Class = "UILabel"; text = "fecha"; ObjectID = "G9Y-iB-8OV"; */
+"G9Y-iB-8OV.text" = "fecha";
+
+/* Class = "UILabel"; text = "Seguridad"; ObjectID = "GNg-19-4SG"; */
+"GNg-19-4SG.text" = "Seguridad";
+
+/* Class = "UILabel"; text = "Estado"; ObjectID = "HRG-mM-Agf"; */
+"HRG-mM-Agf.text" = "Estado";
+
+/* Class = "UISegmentedControl"; KOh-1c-Zbm.segmentTitles[0] = "No"; ObjectID = "KOh-1c-Zbm"; */
+"KOh-1c-Zbm.segmentTitles[0]" = "No";
+
+/* Class = "UISegmentedControl"; KOh-1c-Zbm.segmentTitles[1] = "Sí"; ObjectID = "KOh-1c-Zbm"; */
+"KOh-1c-Zbm.segmentTitles[1]" = "Sí";
+
+/* Class = "UITabBarItem"; title = "Caprino"; ObjectID = "KsM-FL-egT"; */
+"KsM-FL-egT.title" = "Caprino";
+
+/* Class = "UITextField"; placeholder = "  Estado"; ObjectID = "LMG-Oz-gub"; */
+"LMG-Oz-gub.placeholder" = "  Estado";
+
+/* Class = "UILabel"; text = "Cuarentena"; ObjectID = "LVT-II-dbM"; */
+"LVT-II-dbM.text" = "Cuarentena";
+
+/* Class = "UINavigationItem"; title = "Porcino"; ObjectID = "MuV-xg-j90"; */
+"MuV-xg-j90.title" = "Porcino";
+
+/* Class = "UILabel"; text = "ID"; ObjectID = "N3m-Ur-PYA"; */
+"N3m-Ur-PYA.text" = "ID";
+
+/* Class = "UILabel"; text = "Sanidad"; ObjectID = "PQ0-p4-Sav"; */
+"PQ0-p4-Sav.text" = "Sanidad";
+
+/* Class = "UINavigationItem"; title = "Gestión"; ObjectID = "Pzx-6M-fzA"; */
+"Pzx-6M-fzA.title" = "Gestión";
+
+/* Class = "UINavigationItem"; title = "Conejos"; ObjectID = "S7P-QR-8oP"; */
+"S7P-QR-8oP.title" = "Conejos";
+
+/* Class = "UILabel"; text = "Código de familia"; ObjectID = "UmB-1T-dVg"; */
+"UmB-1T-dVg.text" = "Código de familia";
+
+/* Class = "UILabel"; text = "Fecha de nacimiento"; ObjectID = "WWV-xj-76x"; */
+"WWV-xj-76x.text" = "Fecha de nacimiento";
+
+/* Class = "UILabel"; text = "Peso"; ObjectID = "XS1-x4-y6P"; */
+"XS1-x4-y6P.text" = "Peso";
+
+/* Class = "UITabBarItem"; title = "Bovino"; ObjectID = "Y8Z-Wk-wem"; */
+"Y8Z-Wk-wem.title" = "Bovino";
+
+/* Class = "UIBarButtonItem"; title = "Cancelar"; ObjectID = "af3-Ed-lHm"; */
+"af3-Ed-lHm.title" = "Cancelar";
+
+/* Class = "UILabel"; text = "Gestión"; ObjectID = "b7s-ar-6xo"; */
+"b7s-ar-6xo.text" = "Gestión";
+
+/* Class = "UILabel"; text = "Peso"; ObjectID = "bBy-Vk-RmR"; */
+"bBy-Vk-RmR.text" = "Peso";
+
+/* Class = "UINavigationItem"; title = "Ovino"; ObjectID = "bZG-gX-ypU"; */
+"bZG-gX-ypU.title" = "Ovino";
+
+/* Class = "UILabel"; text = "CodFamilia"; ObjectID = "dK9-f7-mru"; */
+"dK9-f7-mru.text" = "CodFamilia";
+
+/* Class = "UITextField"; placeholder = "  Peso"; ObjectID = "dwj-S0-xpG"; */
+"dwj-S0-xpG.placeholder" = "  Peso";
+
+/* Class = "UILabel"; text = "Cuarentena"; ObjectID = "eXO-gV-LGH"; */
+"eXO-gV-LGH.text" = "Cuarentena";
+
+/* Class = "UILabel"; text = "Alimentación"; ObjectID = "f58-CB-p8e"; */
+"f58-CB-p8e.text" = "Alimentación";
+
+/* Class = "UILabel"; text = "Seguridad"; ObjectID = "gI3-8l-FVH"; */
+"gI3-8l-FVH.text" = "Seguridad";
+
+/* Class = "UITabBarItem"; title = "Porcino"; ObjectID = "h4N-bS-PYH"; */
+"h4N-bS-PYH.title" = "Porcino";
+
+/* Class = "UILabel"; text = "Código de familia"; ObjectID = "hEs-Mk-1pt"; */
+"hEs-Mk-1pt.text" = "Código de familia";
+
+/* Class = "UITextField"; placeholder = "  ID"; ObjectID = "hEw-L4-chW"; */
+"hEw-L4-chW.placeholder" = "  ID";
+
+/* Class = "UITabBarItem"; title = "Ovino"; ObjectID = "htB-Bb-YOq"; */
+"htB-Bb-YOq.title" = "Ovino";
+
+/* Class = "UILabel"; text = "Nacimientos"; ObjectID = "iAp-KR-Snm"; */
+"iAp-KR-Snm.text" = "Nacimientos";
+
+/* Class = "UILabel"; text = "Alimentación"; ObjectID = "icY-Re-hTN"; */
+"icY-Re-hTN.text" = "Alimentación";
+
+/* Class = "UILabel"; text = "Animal"; ObjectID = "jHi-hz-FPS"; */
+"jHi-hz-FPS.text" = "Animal";
+
+/* Class = "UITextField"; placeholder = "  Código de familia"; ObjectID = "jed-zF-Hxw"; */
+"jed-zF-Hxw.placeholder" = "  Código de familia";
+
+/* Class = "UILabel"; text = "ID"; ObjectID = "lRH-l2-VCg"; */
+"lRH-l2-VCg.text" = "ID";
+
+/* Class = "UILabel"; text = "Gestión"; ObjectID = "md4-CO-Os2"; */
+"md4-CO-Os2.text" = "Gestión";
+
+/* Class = "UITextField"; placeholder = "  Raza"; ObjectID = "mz9-Gk-Mzb"; */
+"mz9-Gk-Mzb.placeholder" = "  Raza";
+
+/* Class = "UILabel"; text = "Peso"; ObjectID = "nI5-e8-EgP"; */
+"nI5-e8-EgP.text" = "Peso";
+
+/* Class = "UITextField"; placeholder = "  Sexo"; ObjectID = "niC-hm-1Id"; */
+"niC-hm-1Id.placeholder" = "  Sexo";
+
+/* Class = "UINavigationItem"; title = "Bovino"; ObjectID = "rX0-TJ-37A"; */
+"rX0-TJ-37A.title" = "Bovino";
+
+/* Class = "UINavigationItem"; title = "Caprino"; ObjectID = "reO-It-TLr"; */
+"reO-It-TLr.title" = "Caprino";
+
+/* Class = "UILabel"; text = "Seguridad"; ObjectID = "t0D-aa-cd3"; */
+"t0D-aa-cd3.text" = "Seguridad";
+
+/* Class = "UITextField"; placeholder = "  Animal"; ObjectID = "ttf-h9-krz"; */
+"ttf-h9-krz.placeholder" = "  Animal";
+
+/* Class = "UILabel"; text = "Nacimientos"; ObjectID = "uvl-Cf-3f9"; */
+"uvl-Cf-3f9.text" = "Nacimientos";
+
+/* Class = "UILabel"; text = "Raza"; ObjectID = "w6c-g9-anb"; */
+"w6c-g9-anb.text" = "Raza";
+
+/* Class = "UILabel"; text = "idAnimal"; ObjectID = "wTG-Ij-zz1"; */
+"wTG-Ij-zz1.text" = "idAnimal";
+
+/* Class = "UILabel"; text = "Sexo"; ObjectID = "x4t-vG-TpZ"; */
+"x4t-vG-TpZ.text" = "Sexo";
+
+/* Class = "UILabel"; text = "sexo"; ObjectID = "xHK-gx-xy2"; */
+"xHK-gx-xy2.text" = "sexo";
+
+/* Class = "UILabel"; text = "Estado"; ObjectID = "yTZ-aI-NrL"; */
+"yTZ-aI-NrL.text" = "Estado";
+
+/* Class = "UILabel"; text = "Gestión"; ObjectID = "z57-gq-s3w"; */
+"z57-gq-s3w.text" = "Gestión";
+
+/* Class = "UILabel"; text = "Alimentación"; ObjectID = "zFF-FF-Cnz"; */
+"zFF-FF-Cnz.text" = "Alimentación";
+
+/* Class = "UILabel"; text = "Cuarentena"; ObjectID = "zLi-eo-KmN"; */
+"zLi-eo-KmN.text" = "Cuarentena";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zWw-I1-8cl"; */
+"zWw-I1-8cl.text" = "Label";
+
+/* Class = "UILabel"; text = "Estado"; ObjectID = "zpv-yr-oT2"; */
+"zpv-yr-oT2.text" = "Estado";

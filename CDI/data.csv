@@ -1,0 +1,3 @@
+idAnimal,tipo,codFamilia,raza,sexo,fecha,peso,edad,estado,cuarentena
+01,cabra,1,nose,hembra,29/03/2016,55,10,nose,true
+0,vaca,0,raza,hembra,30/04/2002,617,1,estado,false

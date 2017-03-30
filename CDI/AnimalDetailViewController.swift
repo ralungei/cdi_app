@@ -18,8 +18,13 @@ class AnimalDetailViewController: UIViewController {
     @IBOutlet weak var pesoLabel: UILabel!
     @IBOutlet weak var estadoLabel: UILabel!
     @IBOutlet weak var cuarentenaLabel: UILabel!
+    @IBOutlet weak var tipoLabel: UILabel!
+    @IBOutlet weak var fechaLabel: UILabel!
+    @IBOutlet weak var edadLabel: UILabel!
     
     var animal: Animal?
+    
+    let calendar = NSCalendar.current
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +37,8 @@ class AnimalDetailViewController: UIViewController {
         pesoLabel.underlined()
         estadoLabel.underlined()
         cuarentenaLabel.underlined()
+        fechaLabel.underlined()
+        edadLabel.underlined()
         
         // Asign cell values to labels
         idLabel.text = animal?.idAnimal
@@ -40,6 +47,30 @@ class AnimalDetailViewController: UIViewController {
         sexoLabel.text = animal?.sexo
         pesoLabel.text = String(animal!.peso)
         estadoLabel.text = animal?.estado
+        tipoLabel.text = animal?.tipo
+        fechaLabel.text = animal?.fecha
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        
+        let fecha = dateFormatter.date(from: (animal?.fecha)!)
+        
+
+        let diferenciaEdad = Calendar.current.dateComponents([.year, .month, .day], from: fecha!, to: Date())
+        
+        let years = diferenciaEdad.year!
+        let months = diferenciaEdad.month!
+        let days = diferenciaEdad.day!
+        
+        
+        edadLabel.text = "\(years)a " + "\(months)m " + "\(days)d"
+
+        
+ /* para eliminar
+         let partesEdad = animal?.fecha.components(separatedBy: "/")
+ */
+
+
         
         let cuarentenaValue = animal?.cuarentena
         if (cuarentenaValue == true){
