@@ -6,7 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,15 +24,17 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="house" translatesAutoresizingMaskIntoConstraints="NO" id="riv-eR-Pub">
                                 <rect key="frame" x="170" y="60" width="684" height="648"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="riv-eR-Pub" secondAttribute="height" multiplier="19:18" id="APU-G1-uN4"/>
+                                    <constraint firstAttribute="height" constant="648" id="Y8Z-Z4-OgX"/>
+                                    <constraint firstAttribute="width" constant="684" id="hV2-gH-pw6"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="riv-eR-Pub" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="150" id="8FI-8k-3C0"/>
-                            <constraint firstItem="riv-eR-Pub" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="40" id="AhM-ue-exM"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="riv-eR-Pub" secondAttribute="trailing" constant="150" id="Yip-Ep-rRr"/>
-                            <constraint firstItem="riv-eR-Pub" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kdu-Pg-3po"/>
-                            <constraint firstItem="riv-eR-Pub" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="nNf-CA-Uzc"/>
+                            <constraint firstItem="riv-eR-Pub" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Kyh-XH-Mft"/>
+                            <constraint firstItem="riv-eR-Pub" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="NxZ-hR-yJb"/>
                         </constraints>
                     </view>
                 </viewController>

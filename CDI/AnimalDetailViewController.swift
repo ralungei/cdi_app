@@ -22,13 +22,14 @@ class AnimalDetailViewController: UIViewController {
     @IBOutlet weak var fechaLabel: UILabel!
     @IBOutlet weak var edadLabel: UILabel!
     
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
+    
     var animal: Animal?
     
     let calendar = NSCalendar.current
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         // Label underlines
         codFamLabel.underlined()
@@ -50,28 +51,21 @@ class AnimalDetailViewController: UIViewController {
         tipoLabel.text = animal?.tipo
         fechaLabel.text = animal?.fecha
         
+        // Setting 'edad'
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         
         let fecha = dateFormatter.date(from: (animal?.fecha)!)
         
-
         let diferenciaEdad = Calendar.current.dateComponents([.year, .month, .day], from: fecha!, to: Date())
         
         let years = diferenciaEdad.year!
         let months = diferenciaEdad.month!
         let days = diferenciaEdad.day!
         
-        
         edadLabel.text = "\(years)a " + "\(months)m " + "\(days)d"
 
-        
- /* para eliminar
-         let partesEdad = animal?.fecha.components(separatedBy: "/")
- */
-
-
-        
+        //  Setting 'cuarentena'
         let cuarentenaValue = animal?.cuarentena
         if (cuarentenaValue == true){
             cuarentenaLabel.text = "Si"
@@ -98,17 +92,13 @@ class AnimalDetailViewController: UIViewController {
         default:
             break
         }
-        
-        
-        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
@@ -117,18 +107,14 @@ class AnimalDetailViewController: UIViewController {
                 else {
                     fatalError("Unexpected destination: \(segue.destination)")
                 }
-            
             animalEditViewController.animal = animal
         }
-            
+        else if let button = sender as? UIBarButtonItem, button === deleteButton {
+       }
         else{
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
-
         }
-        
-            
     }
-        
 }
 
 

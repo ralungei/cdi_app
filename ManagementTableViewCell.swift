@@ -10,10 +10,10 @@ import UIKit
 
 class ManagementTableViewCell: UITableViewCell {
 
-    
-    @IBOutlet weak var id: UILabel!
     @IBOutlet weak var imagen: UIImageView!
-    @IBOutlet weak var sexo: UILabel!
+    @IBOutlet weak var id: UILabel!
+    @IBOutlet weak var nombre: UILabel!
+    @IBOutlet weak var sexo: UIImageView!
     @IBOutlet weak var fecha: UILabel!
     
     

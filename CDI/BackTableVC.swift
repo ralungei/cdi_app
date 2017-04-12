@@ -11,15 +11,12 @@ import UIKit
 class BackTableVC: UITableViewController {
     
     var TableArray = [String]()
-    
-    @IBOutlet weak var line: UILabel!
-    
+        
     override func viewDidLoad() {
         TableArray = ["Gestión","Alimentación","Nacimientos", "Sanidad", "Seguridad"]
         
         tableView.backgroundView = UIImageView(image: UIImage(named: "menu_background"))
         
-        line.underlined()
 
     }
     
@@ -28,7 +25,7 @@ class BackTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: TableArray[indexPath.row], for: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableArray[indexPath.row], for: indexPath) as UITableViewCell
         
         /*
         cell.textLabel?.text = TableArray[indexPath.row]

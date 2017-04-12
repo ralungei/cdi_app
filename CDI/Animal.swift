@@ -19,13 +19,12 @@ class Animal {
     var sexo: String
     var fecha: String
     var peso: Float
-    var edad: Int
     var estado: String
     var cuarentena: Bool
     
     //MARK: Initialization
     
-    init?(idAnimal: String, tipo:String, codFamilia: String, raza: String, sexo: String, fecha: String, peso: Float, edad: Int, estado: String, cuarentena: Bool) {
+    init?(idAnimal: String, tipo:String, codFamilia: String, raza: String, sexo: String, fecha: String, peso: Float, estado: String, cuarentena: Bool) {
         
         // The name must not be empty
         guard !idAnimal.isEmpty else{
@@ -40,7 +39,6 @@ class Animal {
         self.sexo = sexo
         self.fecha = fecha
         self.peso = peso
-        self.edad = edad
         self.estado = estado
         self.cuarentena = cuarentena
     }

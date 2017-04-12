@@ -25,6 +25,26 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
     @IBOutlet weak var fechaPicker: UIDatePicker!
     @IBOutlet weak var imagen: UIImageView!
 
+    @IBAction func animalAction(_ sender: UITextField) {
+        switch animalTextField.text! {
+        case "gallina":
+            imagen.image = UIImage(named: "001-cock")
+        case "cerdo":
+            imagen.image = UIImage(named: "002-pig")
+        case "oveja":
+            imagen.image = UIImage(named: "003-sheep")
+        case "conejo":
+            imagen.image = UIImage(named: "004-rabbit")
+        case "cabra":
+            imagen.image = UIImage(named: "005-goat")
+        case "vaca":
+            imagen.image = UIImage(named: "006-cow")
+        default:
+            imagen.image = UIImage(named: "")
+        }
+    }
+    
+    
     @IBOutlet weak var saveButton: UIBarButtonItem!
 
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
@@ -38,7 +58,7 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
             owningNavigationController.popViewController(animated: true)
         }
         else {
-            fatalError("The MealViewController is not inside a navigation controller.")
+            fatalError("The AnimalViewController is not inside a navigation controller.")
         }
     }
     
@@ -59,11 +79,10 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
         razaTextField.underlined()
         estadoTextField.underlined()
         sexoTextField.underlined()
-
-        
         
         // Handle the text field’s user input through delegate callbacks.
         idTextField.delegate = self
+        
         // Set up views if editing an existing animal.
         if let animal = animal {
             
@@ -106,13 +125,11 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
                 break
             }
         }
-
         
-        // Enable the Save button only if the text field has a valid Meal name.
+        // Enable the Save button only if the text field has an ID.
         updateSaveButtonState()
         
         // Pickers
-        
         let animalPickerView = UIPickerView()
         animalPickerView.delegate = self
         animalPickerView.tag = 0
@@ -185,7 +202,6 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
         super.prepare(for: segue, sender: sender)
         
         // Configure the destination view controller only when the save button is pressed.
-        
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
             os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
             return
@@ -197,7 +213,6 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
         let raza = razaTextField.text ?? ""
         let sexo = sexoTextField.text ?? ""
         let peso = Float(pesoTextField.text!) ?? 0.0
-        let edad = 0
         let estado = estadoTextField.text ?? ""
         
         let dateFormatter = DateFormatter()
@@ -215,7 +230,7 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
         
         // Set the animal to be passed to AnimalTableViewController after the unwind segue.
         
-        animal = Animal(idAnimal: id, tipo: tipo, codFamilia: codFam, raza: raza, sexo: sexo, fecha: fecha, peso: peso, edad: edad, estado: estado, cuarentena: cuarentena)
+        animal = Animal(idAnimal: id, tipo: tipo, codFamilia: codFam, raza: raza, sexo: sexo, fecha: fecha, peso: peso, estado: estado, cuarentena: cuarentena)
     }
     
     //MARK: Private Methods
@@ -224,6 +239,11 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
         // Disable the Save button if the text field is empty.
         let text = idTextField.text ?? ""
         saveButton.isEnabled = !text.isEmpty
+    }
+    
+    //MARK: Hide keyboard when user touches outside keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
  
 
