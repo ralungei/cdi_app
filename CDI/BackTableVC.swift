@@ -13,9 +13,9 @@ class BackTableVC: UITableViewController {
     var TableArray = [String]()
         
     override func viewDidLoad() {
-        TableArray = ["Gestión","Alimentación","Nacimientos", "Sanidad", "Seguridad"]
+        TableArray = ["Gestión","Alimentación","Nacimientos", "Seguridad"]
         
-        tableView.backgroundView = UIImageView(image: UIImage(named: "menu_background"))
+  //      tableView.backgroundView = UIImageView(image: UIImage(named: "menu_background"))
         
 
     }
@@ -33,7 +33,7 @@ class BackTableVC: UITableViewController {
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
         */
         
-        cell.backgroundColor = UIColor.clear
+//        cell.backgroundColor = UIColor.clear
 
         return cell
     }

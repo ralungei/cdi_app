@@ -64,7 +64,7 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
     
     // MARK: Picker view options
     var animalOptions = ["vaca", "cabra", "oveja", "gallina", "conejo", "cerdo"]
-    var estadoOptions = ["vacio"]
+    var estadoOptions = ["sano", "enfermo", "gestación", "lactante", "celo"]
     var sexoOptions = ["hembra", "varon"]
     
     
@@ -140,7 +140,10 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
         sexoPickerView.tag = 1
         sexoTextField.inputView = sexoPickerView
         
-        
+        let estadoPickerView = UIPickerView()
+        estadoPickerView.delegate = self
+        estadoPickerView.tag = 2
+        estadoTextField.inputView = estadoPickerView
     }
     
     //MARK: Picker funcs
@@ -152,26 +155,40 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
         if (pickerView.tag == 0){
             return animalOptions.count
         }
-        else{
+        else if (pickerView.tag == 1){
             return sexoOptions.count
         }
+        
+        else if (pickerView.tag == 2){
+            return estadoOptions.count
+        }
+        
+        return 0
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if (pickerView.tag == 0){
             return animalOptions[row]
         }
-        else{
+        else if (pickerView.tag == 1){
             return sexoOptions[row]
         }
+        else if (pickerView.tag == 2){
+            return estadoOptions[row]
+        }
+        
+        return nil
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (pickerView.tag == 0){
             animalTextField.text = animalOptions[row]
         }
-        else{
+        else if (pickerView.tag == 1){
             sexoTextField.text = sexoOptions[row]
+        }
+        else if (pickerView.tag == 2){
+            estadoTextField.text = estadoOptions[row]
         }
     }
     

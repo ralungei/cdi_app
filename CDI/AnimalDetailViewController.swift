@@ -23,6 +23,34 @@ class AnimalDetailViewController: UIViewController {
     @IBOutlet weak var edadLabel: UILabel!
     
     @IBOutlet weak var deleteButton: UIBarButtonItem!
+
+    @IBAction func deleteAction(_ sender: Any) {
+        // Confirmation alert
+        let deleteConfirmation = UIAlertController.init(title: nil, message: "Seleccione el motivo de la baja.", preferredStyle: .actionSheet)
+        
+        let soldAction = UIAlertAction(title: "Venta", style: .destructive, handler: {(action)  in
+            self.performSegue(withIdentifier: "unwindToAnimalList", sender: self)
+        })
+        
+        let deadAction = UIAlertAction(title: "Fallecimiento", style: .destructive, handler: {(alert: UIAlertAction!) -> Void in
+            self.performSegue(withIdentifier: "unwindToAnimalList", sender: self)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: { (alert: UIAlertAction!) -> Void in
+            print("cancel")
+        })
+        
+        deleteConfirmation.addAction(soldAction)
+        deleteConfirmation.addAction(deadAction)
+        deleteConfirmation.addAction(cancelAction)
+        
+        deleteConfirmation.popoverPresentationController?.sourceView = self.view
+        deleteConfirmation.popoverPresentationController?.sourceRect = self.deleteButton.accessibilityFrame
+
+        self.present(deleteConfirmation, animated: true, completion: nil)
+        
+    }
+    
     
     var animal: Animal?
     
@@ -109,7 +137,8 @@ class AnimalDetailViewController: UIViewController {
                 }
             animalEditViewController.animal = animal
         }
-        else if let button = sender as? UIBarButtonItem, button === deleteButton {
+        else if segue.identifier == "unwindToAnimalList" {
+            // Save the removal reason
        }
         else{
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")

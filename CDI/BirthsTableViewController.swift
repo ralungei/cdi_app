@@ -9,9 +9,10 @@
 import UIKit
 import os.log
 
-class ManagementTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
+class BirthsTableViewController: UITableViewController, UISearchBarDelegate {
     
     //MARK: Properties
+    
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
@@ -29,8 +30,10 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
             deleteButton.title = "OK"
         }
     }
+    var births = [Birth]()
+    var filteredBirths = [Birth]()
+    
     var animals = [Animal]()
-    var filteredAnimals = [Animal]()
     
     let searchController = UISearchController(searchResultsController: nil)
 
@@ -42,8 +45,6 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
         // Setup the Search Controller
         searchController.searchBar.keyboardType = UIKeyboardType.numberPad
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.selectedScopeButtonIndex = 0
-        searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
@@ -53,11 +54,6 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
         searchController.searchBar.backgroundColor = UIColor.init(red: 0.909, green: 0.27, blue: 0.235, alpha: 1)
         searchController.searchBar.backgroundImage = UIImage()
 
-        // Setup the Scope Bar
-        searchController.searchBar.scopeButtonTitles = ["Todos", "Bovino", "Porcino", "Ovino", "Caprino", "Conejos", "Aves"]
-        tableView.tableHeaderView = searchController.searchBar
-
-        
         // Setup the menu
         if (self.revealViewController() != nil){
             menuButton.target = self.revealViewController()
@@ -65,12 +61,14 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
 
+
         // Load the sample data
         /* Uncomment to load from array
-        loadSampleAnimals()
+        loadSampleBirths()
         */
         // Load from file
         parseCSV()
+        parseCSVManagement()
     }
     
     override func didReceiveMemoryWarning() {
@@ -85,30 +83,35 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.isActive {
-            return self.filteredAnimals.count
+            return self.filteredBirths.count
         }
         else {
-            return self.animals.count
+            return self.births.count
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as? ManagementTableViewCell
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as? BirthsTableViewCell
         else {
-            fatalError("The dequeued cell is not an instance of ManagementTableViewCell.")
+            fatalError("The dequeued cell is not an instance of BirthsTableViewCell.")
         }
 
-        var arrayAnimals = [Animal]()
+        var arrayBirths = [Birth]()
         
         if searchController.isActive {
-            arrayAnimals = self.filteredAnimals
+            arrayBirths = self.filteredBirths
         }
         else{
-            arrayAnimals = self.animals
+            arrayBirths = self.births
         }
         
-        let animal = arrayAnimals[indexPath.row]
-        cell.id.text = animal.idAnimal
+        let birth = arrayBirths[indexPath.row]
+        
+        cell.idAnimal.text = birth.idAnimal
+        cell.fecha.text = birth.fecha
+        
+        let animal = animals[Int(birth.idAnimal)!]
+        // TENGO QUE COGER LOS DATOS DEL ANIMAL CORRESPONDIENTE BUSCANDOLO POR ID
         switch animal.tipo {
             case "gallina":
                 cell.imagen.image = UIImage(named: "chicken")
@@ -126,17 +129,6 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
                 break
         }
         
-        switch animal.sexo {
-            case "hembra":
-                cell.sexo.image = UIImage(named: "female")
-            case "varon":
-                cell.sexo.image = UIImage(named: "male")
-            default:
-            break
-        }
-        
-        cell.fecha.text = animal.fecha
-
         return cell
     }
 
@@ -150,17 +142,17 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
     func deleteRow(forRowAt indexPath: IndexPath){
         // Delete the row from the data source
         if(self.searchController.isActive){
-            let idAnimalBusqueda = self.filteredAnimals[indexPath.row].idAnimal
-            let indexTableview = self.animals.index(where: { (animal) -> Bool in
-                animal.idAnimal == idAnimalBusqueda
+            let idAnimalBusqueda = self.filteredBirths[indexPath.row].idAnimal
+            let indexTableview = self.births.index(where: { (birth) -> Bool in
+                birth.idAnimal == idAnimalBusqueda
             })
-            self.filteredAnimals.remove(at: indexPath.row)
+            self.filteredBirths.remove(at: indexPath.row)
             
-            // Delete the animal from the original array of animals
-            self.animals.remove(at: indexTableview!)
+            // Delete the birth from the original array of births
+            self.births.remove(at: indexTableview!)
         }
         else{
-            self.animals.remove(at: indexPath.row)
+            self.births.remove(at: indexPath.row)
         }
         tableView.deleteRows(at: [indexPath], with: .fade)
     }
@@ -169,15 +161,9 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
      override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
      if editingStyle == .delete {
      // Confirmation alert
-        let deleteConfirmation = UIAlertController.init(title: nil, message: "Seleccione el motivo de la baja.", preferredStyle: .actionSheet)
-        
-        
-        let soldAction = UIAlertAction(title: "Venta", style: .destructive, handler: {(action)  in
-            self.deleteRow(forRowAt: indexPath)
-        
-        })
+        let deleteConfirmation = UIAlertController.init(title: nil, message: "¿Desea eliminar la fila seleccionada?", preferredStyle: .actionSheet)
                 
-        let deadAction = UIAlertAction(title: "Fallecimiento", style: .destructive, handler: {(alert: UIAlertAction!) -> Void in
+        let okAction = UIAlertAction(title: "OK", style: .destructive, handler: {(alert: UIAlertAction!) -> Void in
             self.deleteRow(forRowAt: indexPath)
         })
                 
@@ -185,18 +171,13 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
             print("cancel")
         })
                 
-        deleteConfirmation.addAction(soldAction)
-        deleteConfirmation.addAction(deadAction)
+        deleteConfirmation.addAction(okAction)
         deleteConfirmation.addAction(cancelAction)
 
         deleteConfirmation.popoverPresentationController?.sourceView = self.view
         deleteConfirmation.popoverPresentationController?.sourceRect = self.tableView.rectForRow(at: indexPath)
         self.present(deleteConfirmation, animated: true, completion: nil)
-     }
-        /* else if editingStyle == .insert {
-         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-            }
-        */
+        }
     }
     
      // MARK: - Navigation
@@ -208,40 +189,38 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
         switch (segue.identifier ?? ""){
             
             case "AddItem":
-                os_log("Adding a new animal.", log: OSLog.default, type: .debug)
+                os_log("Adding a new birth.", log: OSLog.default, type: .debug)
         
             case "ShowDetail":
                 
-                guard let animalDetailViewController = segue.destination as? AnimalDetailViewController
+                guard let birthDetailViewController = segue.destination as? BirthDetailViewController
                     else {
                         fatalError("Unexpected destination: \(segue.destination)")
                 }
                 
-                guard let selectedAnimalCell = sender as? ManagementTableViewCell else {
+                guard let selectedBirthCell = sender as? BirthsTableViewCell else {
                     fatalError("Unexpected sender: \(sender)")
                 }
                 
                 let indexPath = tableView.indexPathForSelectedRow
+                let birth: Birth?
                 
                 if searchController.isActive {
-                    if indexPath != nil {
-                        animalDetailViewController.animal = filteredAnimals[(indexPath!.row)]
-                    }
-                    else {
-                        animalDetailViewController.animal = animals[indexPath!.row]
-                    }
+                    birth = filteredBirths[(indexPath!.row)]
+                    birthDetailViewController.birth = birth
                 }
             
                 else {
-                    if indexPath != nil {
-                        animalDetailViewController.animal = animals[(indexPath?.row)!]
-                    }
-                    
-            }
+                    birth = births[(indexPath?.row)!]
+                    birthDetailViewController.birth = birth
+                }
+            
+            birthDetailViewController.animal = animals[Int((birth?.idAnimal)!)!]
+        
             
         /*
                 // MARK: Selected cell doesn't belong to the displayed tableView
-                guard let indexPath = tableView.indexPath(for: selectedAnimalCell) else{
+                guard let indexPath = tableView.indexPath(for: selectedBirthCell) else{
                     fatalError("The selected cell is not being displayed by the table")
                 }
         */
@@ -252,28 +231,28 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
      }
     
     // MARK: - Actions
-    @IBAction func unwindToAnimalList(sender: UIStoryboardSegue){
-        if let sourceViewController = sender.source as? AnimalViewController, let animal = sourceViewController.animal {
+    @IBAction func unwindToBirthList(sender: UIStoryboardSegue){
+        if let sourceViewController = sender.source as? BirthViewController, let birth = sourceViewController.birth {
             
             if self.searchController.isActive {
                 fatalError("SEARCH DISPLAY CONTROLLER IS STILL ACTIVE;")
             }
             else {
                 if let selectedIndexPath = self.tableView.indexPathForSelectedRow {
-                // Update an existing animal.
-                animals[selectedIndexPath.row] = animal
+                // Update an existing birth.
+                births[selectedIndexPath.row] = birth
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
                 }
                 else {
-                // Add a new animal.
-                let newIndexPath = IndexPath(row: animals.count, section: 0)
+                // Add a new birth.
+                let newIndexPath = IndexPath(row: births.count, section: 0)
                 
-                animals.append(animal)
+                births.append(birth)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
                 }
             }
         }
-        else if sender.source is AnimalDetailViewController {
+        else if sender.source is BirthDetailViewController {
             deleteRow(forRowAt: tableView.indexPathForSelectedRow!)
         }
     }
@@ -282,49 +261,18 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
     
     // MARK: - Search
     func filterContentForSearchText(_ searchText: String, scope: String = "Todos") {
-        self.filteredAnimals = self.animals.filter({( animal: Animal) -> Bool in
-            let tipo: String
-            
-            switch animal.tipo {
-            case "vaca":
-                tipo = "Bovino"
-            case "cerdo":
-                tipo = "Porcino"
-            case "oveja":
-                tipo = "Ovino"
-            case "cabra":
-                tipo = "Caprino"
-            case "conejo":
-                tipo = "Conejos"
-            case "gallina":
-                tipo = "Aves"
-            default:
-                tipo = ""
-            }
-            
-            let tipoMatch = (scope == "Todos") || (tipo == scope)
-            
+        self.filteredBirths = self.births.filter({( birth: Birth) -> Bool in
             if(searchController.searchBar.text == ""){
-                return tipoMatch
+                return true
             }
             else{
-                return tipoMatch && animal.idAnimal.contains(searchText)
+                return birth.idAnimal.contains(searchText)
             }
-            //String(animal.idAnimal)?.range(of: searchText) != nil
-            })
+        })
         tableView.reloadData()
     }
     
-
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
-    }
-
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
-        filterContentForSearchText(searchController.searchBar.text!, scope: scope)
-    }
+    
 
     /*
     // MARK: - Device Orientation
@@ -344,20 +292,33 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
     
     // MARK: - Data
     
-    private func loadSampleAnimals() {
-        guard let animal1 = Animal(idAnimal: "0001", tipo: "vaca", codFamilia: "0001", raza: "holstein", sexo: "hembra", fecha: "12/12/1996", peso: 606, estado: "lLactante", cuarentena: true)
-            else {
-                fatalError("Unable to instantiate animal1")
-        }
+    private func loadSampleBirths() {
+        let birth1 = Birth(idAnimal: "0001", criasMacho: 2, criasHembra: 3, criasMuertas: 4, fecha: "12/12/1996", descripcion: "descripcion")
         
-        guard let animal2 = Animal(idAnimal: "0002", tipo: "conejo", codFamilia: "0001", raza: "holstein", sexo: "varon", fecha: "12/12/1996", peso: 645, estado: "lactante", cuarentena: false)
-            else {
-                fatalError("Unable to instantiate animal2")
-        }
-        animals += [animal1, animal2]
+        let birth2 = Birth(idAnimal: "9124", criasMacho: 2, criasHembra: 1, criasMuertas: 1, fecha: "12/12/1996", descripcion: "descripcion")
+
+        births += [birth1, birth2]
     }
     
     private func parseCSV() {
+        let path = Bundle.main.path(forResource: "birthsData", ofType: "csv")
+        do {
+            let csv = try CSV(contentsOfURL: path!)
+            let rows = csv.rows
+            
+            for row in rows {
+                let birth = Birth(idAnimal: row["idAnimal"]!, criasMacho: Int(row["criasMacho"]!)!, criasHembra: Int(row["criasHembra"]!)!, criasMuertas: Int(row["criasMuertas"]!)!, fecha: row["fecha"]!, descripcion: row["descripcion"]!)
+                
+                births.append(birth)
+            }
+            
+        } catch let err as NSError{
+            print(err.debugDescription)
+        }
+    }
+    
+    
+    private func parseCSVManagement() {
         let path = Bundle.main.path(forResource: "data", ofType: "csv")
         do {
             let csv = try CSV(contentsOfURL: path!)

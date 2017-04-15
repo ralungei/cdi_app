@@ -25,8 +25,7 @@ class Animal {
     //MARK: Initialization
     
     init?(idAnimal: String, tipo:String, codFamilia: String, raza: String, sexo: String, fecha: String, peso: Float, estado: String, cuarentena: Bool) {
-        
-        // The name must not be empty
+        // The id must not be empty
         guard !idAnimal.isEmpty else{
             return nil
         }
