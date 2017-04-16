@@ -256,9 +256,9 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
         if let sourceViewController = sender.source as? AnimalViewController, let animal = sourceViewController.animal {
             
             if self.searchController.isActive {
-                fatalError("SEARCH DISPLAY CONTROLLER IS STILL ACTIVE;")
+                self.searchController.isActive = false
             }
-            else {
+
                 if let selectedIndexPath = self.tableView.indexPathForSelectedRow {
                 // Update an existing animal.
                 animals[selectedIndexPath.row] = animal
@@ -271,7 +271,7 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
                 animals.append(animal)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
                 }
-            }
+            
         }
         else if sender.source is AnimalDetailViewController {
             deleteRow(forRowAt: tableView.indexPathForSelectedRow!)

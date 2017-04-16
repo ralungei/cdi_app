@@ -13,7 +13,7 @@ class BackTableVC: UITableViewController {
     var TableArray = [String]()
         
     override func viewDidLoad() {
-        TableArray = ["Gestión","Alimentación","Nacimientos", "Seguridad"]
+        TableArray = ["Seguridad", "Gestión","Alimentación","Nacimientos"]
         
   //      tableView.backgroundView = UIImageView(image: UIImage(named: "menu_background"))
         
