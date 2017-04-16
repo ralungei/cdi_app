@@ -17,6 +17,12 @@
 		1B3DB4331EA12E260009A289 /* BirthDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3DB4321EA12E260009A289 /* BirthDetailViewController.swift */; };
 		1B3DB4351EA1306E0009A289 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3DB4341EA1306E0009A289 /* BirthViewController.swift */; };
 		1B3DB43F1EA3759D0009A289 /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3DB43E1EA3759D0009A289 /* SecurityViewController.swift */; };
+		1B3DB4411EA37B460009A289 /* PestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3DB4401EA37B460009A289 /* PestTableViewController.swift */; };
+		1B3DB4431EA37B7F0009A289 /* Pest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3DB4421EA37B7F0009A289 /* Pest.swift */; };
+		1B3DB4451EA37BB90009A289 /* PestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3DB4441EA37BB90009A289 /* PestTableViewCell.swift */; };
+		1B3DB4471EA37DBC0009A289 /* PestInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3DB4461EA37DBC0009A289 /* PestInputTableViewCell.swift */; };
+		1B3DB44F1EA3B5BC0009A289 /* PestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3DB44E1EA3B5BC0009A289 /* PestViewController.swift */; };
+		1B3DB4511EA3CF8E0009A289 /* TemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3DB4501EA3CF8E0009A289 /* TemperatureViewController.swift */; };
 		1B54DF711E9D43B70017E5C1 /* Controlador.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54DF701E9D43B70017E5C1 /* Controlador.swift */; };
 		1B54DF731E9E47C80017E5C1 /* Vaccine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54DF721E9E47C80017E5C1 /* Vaccine.swift */; };
 		1B54DF751E9FDA1E0017E5C1 /* VaccineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54DF741E9FDA1E0017E5C1 /* VaccineTableViewCell.swift */; };
@@ -56,6 +62,12 @@
 		1B3DB4321EA12E260009A289 /* BirthDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirthDetailViewController.swift; sourceTree = "<group>"; };
 		1B3DB4341EA1306E0009A289 /* BirthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
 		1B3DB43E1EA3759D0009A289 /* SecurityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityViewController.swift; sourceTree = "<group>"; };
+		1B3DB4401EA37B460009A289 /* PestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PestTableViewController.swift; sourceTree = "<group>"; };
+		1B3DB4421EA37B7F0009A289 /* Pest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pest.swift; sourceTree = "<group>"; };
+		1B3DB4441EA37BB90009A289 /* PestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PestTableViewCell.swift; sourceTree = "<group>"; };
+		1B3DB4461EA37DBC0009A289 /* PestInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PestInputTableViewCell.swift; sourceTree = "<group>"; };
+		1B3DB44E1EA3B5BC0009A289 /* PestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PestViewController.swift; sourceTree = "<group>"; };
+		1B3DB4501EA3CF8E0009A289 /* TemperatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureViewController.swift; sourceTree = "<group>"; };
 		1B54DF701E9D43B70017E5C1 /* Controlador.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controlador.swift; sourceTree = "<group>"; };
 		1B54DF721E9E47C80017E5C1 /* Vaccine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vaccine.swift; sourceTree = "<group>"; };
 		1B54DF741E9FDA1E0017E5C1 /* VaccineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaccineTableViewCell.swift; sourceTree = "<group>"; };
@@ -113,6 +125,12 @@
 			isa = PBXGroup;
 			children = (
 				1B3DB43E1EA3759D0009A289 /* SecurityViewController.swift */,
+				1B3DB4501EA3CF8E0009A289 /* TemperatureViewController.swift */,
+				1B3DB4421EA37B7F0009A289 /* Pest.swift */,
+				1B3DB44E1EA3B5BC0009A289 /* PestViewController.swift */,
+				1B3DB4441EA37BB90009A289 /* PestTableViewCell.swift */,
+				1B3DB4461EA37DBC0009A289 /* PestInputTableViewCell.swift */,
+				1B3DB4401EA37B460009A289 /* PestTableViewController.swift */,
 			);
 			name = Security;
 			sourceTree = "<group>";
@@ -155,9 +173,9 @@
 				1B54DF761E9FDA390017E5C1 /* Vaccine */,
 				1BAFD1B51E6C4F1A005F3F0C /* BackTableVC.swift */,
 				1B5EE2F31E673892002C2F06 /* ViewController.swift */,
-				1B5EE2F51E673892002C2F06 /* Main.storyboard */,
 				1B3DB43D1EA375750009A289 /* Security */,
 				1B5EE2FB1E673892002C2F06 /* Assets.xcassets */,
+				1B5EE2F51E673892002C2F06 /* Main.storyboard */,
 				1B5EE2FD1E673892002C2F06 /* LaunchScreen.storyboard */,
 				1B5EE3001E673892002C2F06 /* Info.plist */,
 				1B5EE2F81E673892002C2F06 /* CDI.xcdatamodeld */,
@@ -293,6 +311,7 @@
 				1BE7971F1E689D4D00D74D12 /* SheepController.swift in Sources */,
 				1BE7971B1E689CF200D74D12 /* RabbitController.swift in Sources */,
 				1B3DB42D1EA119120009A289 /* Birth.swift in Sources */,
+				1B3DB4471EA37DBC0009A289 /* PestInputTableViewCell.swift in Sources */,
 				1BD703B31E74642F00947DF0 /* UnderlinedField.swift in Sources */,
 				1B1D29BF1E8AAF3A000772B6 /* csv.swift in Sources */,
 				1BD703A31E6DD36800947DF0 /* ManagementTableViewCell.swift in Sources */,
@@ -304,16 +323,21 @@
 				1B3DB4281EA0D4690009A289 /* AnimalTabController.swift in Sources */,
 				1BE7971D1E689D1C00D74D12 /* PigController.swift in Sources */,
 				1B3DB42A1EA118070009A289 /* BirthsTableViewController.swift in Sources */,
+				1B3DB44F1EA3B5BC0009A289 /* PestViewController.swift in Sources */,
 				1BE797251E689D8A00D74D12 /* ChickenController.swift in Sources */,
 				1B54DF751E9FDA1E0017E5C1 /* VaccineTableViewCell.swift in Sources */,
+				1B3DB4511EA3CF8E0009A289 /* TemperatureViewController.swift in Sources */,
+				1B3DB4451EA37BB90009A289 /* PestTableViewCell.swift in Sources */,
 				1B5EE2F21E673892002C2F06 /* AppDelegate.swift in Sources */,
 				1BD703AF1E72CFB100947DF0 /* AnimalDetailViewController.swift in Sources */,
 				1B3DB42F1EA11BC80009A289 /* BirthsTableViewCell.swift in Sources */,
 				1B54DF731E9E47C80017E5C1 /* Vaccine.swift in Sources */,
 				1BE797231E689D7500D74D12 /* CowController.swift in Sources */,
 				1B3DB43F1EA3759D0009A289 /* SecurityViewController.swift in Sources */,
+				1B3DB4411EA37B460009A289 /* PestTableViewController.swift in Sources */,
 				1B5EE2FA1E673892002C2F06 /* CDI.xcdatamodeld in Sources */,
 				1B3DB4331EA12E260009A289 /* BirthDetailViewController.swift in Sources */,
+				1B3DB4431EA37B7F0009A289 /* Pest.swift in Sources */,
 				1B3DB4351EA1306E0009A289 /* BirthViewController.swift in Sources */,
 				1BE797211E689D5A00D74D12 /* DeerController.swift in Sources */,
 				1BD703AB1E7178E400947DF0 /* Animal.swift in Sources */,

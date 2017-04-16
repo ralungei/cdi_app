@@ -13,8 +13,9 @@ class BackTableVC: UITableViewController {
     var TableArray = [String]()
         
     override func viewDidLoad() {
-        TableArray = ["Seguridad", "Gestión","Alimentación","Nacimientos"]
+        TableArray = ["Animales", "Alimentación","Seguridad","Nacimientos"]
         
+        self.tableView.tableFooterView = UIView()
   //      tableView.backgroundView = UIImageView(image: UIImage(named: "menu_background"))
         
 
