@@ -39,6 +39,10 @@
 		1B5EE2FC1E673892002C2F06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B5EE2FB1E673892002C2F06 /* Assets.xcassets */; };
 		1B5EE2FF1E673892002C2F06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B5EE2FD1E673892002C2F06 /* LaunchScreen.storyboard */; };
 		1BAFD1B61E6C4F1A005F3F0C /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAFD1B51E6C4F1A005F3F0C /* BackTableVC.swift */; };
+		1BC667F91EA5254100143ACC /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC667F81EA5254100143ACC /* ProductTableViewCell.swift */; };
+		1BC667FB1EA5256300143ACC /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC667FA1EA5256300143ACC /* ProductViewController.swift */; };
+		1BC667FD1EA5261500143ACC /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC667FC1EA5261500143ACC /* ProductsTableViewController.swift */; };
+		1BC668001EA5266F00143ACC /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC667FF1EA5266F00143ACC /* Product.swift */; };
 		1BD7039B1E6D94E300947DF0 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD7039A1E6D94E300947DF0 /* SWRevealViewController.m */; };
 		1BD703A31E6DD36800947DF0 /* ManagementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD703A21E6DD36800947DF0 /* ManagementTableViewCell.swift */; };
 		1BD703A91E6F169200947DF0 /* ManagementTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD703A81E6F169200947DF0 /* ManagementTableViewController.swift */; };
@@ -86,6 +90,10 @@
 		1B5EE2FE1E673892002C2F06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B5EE3001E673892002C2F06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BAFD1B51E6C4F1A005F3F0C /* BackTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackTableVC.swift; sourceTree = "<group>"; };
+		1BC667F81EA5254100143ACC /* ProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		1BC667FA1EA5256300143ACC /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		1BC667FC1EA5261500143ACC /* ProductsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
+		1BC667FF1EA5266F00143ACC /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		1BD703991E6D94E300947DF0 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		1BD7039A1E6D94E300947DF0 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		1BD703A21E6DD36800947DF0 /* ManagementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagementTableViewCell.swift; path = ../ManagementTableViewCell.swift; sourceTree = "<group>"; };
@@ -125,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				1B3DB43E1EA3759D0009A289 /* SecurityViewController.swift */,
+				1BC667FE1EA5264900143ACC /* Products */,
 				1B3DB4531EA3F36C0009A289 /* Temperatures */,
 				1B3DB4521EA3F3630009A289 /* Pests */,
 			);
@@ -227,6 +236,17 @@
 			path = CDI;
 			sourceTree = "<group>";
 		};
+		1BC667FE1EA5264900143ACC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1BC667FF1EA5266F00143ACC /* Product.swift */,
+				1BC667FA1EA5256300143ACC /* ProductViewController.swift */,
+				1BC667FC1EA5261500143ACC /* ProductsTableViewController.swift */,
+				1BC667F81EA5254100143ACC /* ProductTableViewCell.swift */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		1BD703B61E74A27F00947DF0 /* Underlines */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,12 +263,12 @@
 				1BD703AC1E71A38200947DF0 /* AnimalViewController.swift */,
 				1B3DB4271EA0D4690009A289 /* AnimalTabController.swift */,
 				1BD703AE1E72CFB100947DF0 /* AnimalDetailViewController.swift */,
-				1BD703A81E6F169200947DF0 /* ManagementTableViewController.swift */,
-				1BD703A21E6DD36800947DF0 /* ManagementTableViewCell.swift */,
 				1B54DF721E9E47C80017E5C1 /* Vaccine.swift */,
 				1B3DB45E1EA443670009A289 /* VaccineTableViewCell.swift */,
 				1B3DB4561EA441370009A289 /* Pill.swift */,
 				1B3DB45C1EA443590009A289 /* PillTableViewCell.swift */,
+				1BD703A81E6F169200947DF0 /* ManagementTableViewController.swift */,
+				1BD703A21E6DD36800947DF0 /* ManagementTableViewCell.swift */,
 			);
 			name = Management;
 			sourceTree = "<group>";
@@ -354,10 +374,12 @@
 				1B5EE2F41E673892002C2F06 /* ViewController.swift in Sources */,
 				1BD7039B1E6D94E300947DF0 /* SWRevealViewController.m in Sources */,
 				1B3DB4281EA0D4690009A289 /* AnimalTabController.swift in Sources */,
+				1BC667FD1EA5261500143ACC /* ProductsTableViewController.swift in Sources */,
 				1B3DB45D1EA443590009A289 /* PillTableViewCell.swift in Sources */,
 				1B3DB42A1EA118070009A289 /* BirthsTableViewController.swift in Sources */,
 				1B3DB44F1EA3B5BC0009A289 /* PestViewController.swift in Sources */,
 				1B3DB4511EA3CF8E0009A289 /* TemperatureViewController.swift in Sources */,
+				1BC667FB1EA5256300143ACC /* ProductViewController.swift in Sources */,
 				1B3DB4451EA37BB90009A289 /* PestTableViewCell.swift in Sources */,
 				1B5EE2F21E673892002C2F06 /* AppDelegate.swift in Sources */,
 				1B3DB4571EA441370009A289 /* Pill.swift in Sources */,
@@ -368,12 +390,14 @@
 				1B3DB4671EA4DB670009A289 /* FeedingViewController.swift in Sources */,
 				1B3DB4411EA37B460009A289 /* PestTableViewController.swift in Sources */,
 				1B3DB4631EA4BF390009A289 /* FeedingTableViewCell.swift in Sources */,
+				1BC667F91EA5254100143ACC /* ProductTableViewCell.swift in Sources */,
 				1B5EE2FA1E673892002C2F06 /* CDI.xcdatamodeld in Sources */,
 				1B3DB4331EA12E260009A289 /* BirthDetailViewController.swift in Sources */,
 				1B3DB4431EA37B7F0009A289 /* Pest.swift in Sources */,
 				1B3DB4351EA1306E0009A289 /* BirthViewController.swift in Sources */,
 				1BD703AB1E7178E400947DF0 /* Animal.swift in Sources */,
 				1B54DF711E9D43B70017E5C1 /* Controlador.swift in Sources */,
+				1BC668001EA5266F00143ACC /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,10 +33,11 @@ class FeedingTableViewController: UITableViewController {
 
 
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.isOpaque = true
         view.tintColor = UIColor.init(red: 0.26, green: 0.764, blue: 0.396, alpha: 1)
+        
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = UIColor.white
     }

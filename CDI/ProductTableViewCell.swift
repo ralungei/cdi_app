@@ -1,5 +1,5 @@
 //
-//  PillTableViewCell.swift
+//  ProductTableViewCell.swift
 //  CDI
 //
 //  Created by ETSISI on 17/4/17.
@@ -8,14 +8,11 @@
 
 import UIKit
 
-class PillTableViewCell: UITableViewCell {
-    
+class ProductTableViewCell: UITableViewCell {
+
     @IBOutlet weak var id: UILabel!
     @IBOutlet weak var nombre: UILabel!
-    @IBOutlet weak var dosis: UILabel!
-    @IBOutlet weak var toma: UILabel!
-    @IBOutlet weak var fechaInicio: UILabel!
-    @IBOutlet weak var fechaFin: UILabel!
+    @IBOutlet weak var fecha: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
