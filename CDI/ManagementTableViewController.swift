@@ -63,7 +63,10 @@ class ManagementTableViewController: UITableViewController, UISearchBarDelegate,
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            
+            
         }
+        
 
         // Load the sample data
         /* Uncomment to load from array

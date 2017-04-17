@@ -9,10 +9,13 @@
 import UIKit
 import os.log
 
-class PestViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate{
+class PestViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate{
 
     // MARK: Properties
     var pest: Pest?
+    
+    // MARK: Picker view options
+    var planesOptions = ["Desinsectación", "Desratización"]
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var planTextField: UITextField!
@@ -50,8 +53,14 @@ class PestViewController: UIViewController, UITextFieldDelegate, UINavigationCon
             fechaPicker.date = dateFormatter.date(from: pest.fecha)!
         }
         
+        // Pickers
+        let planPickerView = UIPickerView()
+        planPickerView.delegate = self
+        planTextField.inputView = planPickerView
+        
         // Enable the Save button only if the text field has an ID.
         updateSaveButtonState()
+        
     }
     
     
@@ -107,6 +116,22 @@ class PestViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    //MARK: Picker funcs
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return planesOptions.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return planesOptions[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        planTextField.text = planesOptions[row]
  
-
+    }
 }

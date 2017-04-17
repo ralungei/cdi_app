@@ -31,6 +31,7 @@ class TemperatureViewController: UIViewController, UITabBarDelegate {
         temperaturaChange.addTextField(configurationHandler: { (textField) in
             textField.placeholder = "Temperatura"
             textField.text = self.temperaturasDeseadas[(self.tabBar.selectedItem?.tag)!]
+            textField.keyboardType = .numberPad
 
         })
         
@@ -59,6 +60,7 @@ class TemperatureViewController: UIViewController, UITabBarDelegate {
         humedadChange.addTextField(configurationHandler: { (textField) in
             textField.placeholder = "Humedad"
             textField.text = self.humedadesDeseadas[(self.tabBar.selectedItem?.tag)!]
+            textField.keyboardType = .numberPad
             
         })
         
