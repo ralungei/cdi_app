@@ -30,7 +30,6 @@
 		1B3DB4631EA4BF390009A289 /* FeedingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3DB4621EA4BF390009A289 /* FeedingTableViewCell.swift */; };
 		1B3DB4651EA4C8E10009A289 /* Feeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3DB4641EA4C8E10009A289 /* Feeding.swift */; };
 		1B3DB4671EA4DB670009A289 /* FeedingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3DB4661EA4DB670009A289 /* FeedingViewController.swift */; };
-		1B54DF711E9D43B70017E5C1 /* Controlador.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54DF701E9D43B70017E5C1 /* Controlador.swift */; };
 		1B54DF731E9E47C80017E5C1 /* Vaccine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54DF721E9E47C80017E5C1 /* Vaccine.swift */; };
 		1B5EE2F21E673892002C2F06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5EE2F11E673892002C2F06 /* AppDelegate.swift */; };
 		1B5EE2F41E673892002C2F06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5EE2F31E673892002C2F06 /* ViewController.swift */; };
@@ -81,7 +80,6 @@
 		1B3DB4621EA4BF390009A289 /* FeedingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedingTableViewCell.swift; sourceTree = "<group>"; };
 		1B3DB4641EA4C8E10009A289 /* Feeding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feeding.swift; sourceTree = "<group>"; };
 		1B3DB4661EA4DB670009A289 /* FeedingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedingViewController.swift; sourceTree = "<group>"; };
-		1B54DF701E9D43B70017E5C1 /* Controlador.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controlador.swift; sourceTree = "<group>"; };
 		1B54DF721E9E47C80017E5C1 /* Vaccine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vaccine.swift; sourceTree = "<group>"; };
 		1B5EE2EE1E673892002C2F06 /* CDI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CDI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B5EE2F11E673892002C2F06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -192,14 +190,6 @@
 			name = Feeding;
 			sourceTree = "<group>";
 		};
-		1B54DF761E9FDA390017E5C1 /* Vaccine */ = {
-			isa = PBXGroup;
-			children = (
-				1B54DF701E9D43B70017E5C1 /* Controlador.swift */,
-			);
-			name = Vaccine;
-			sourceTree = "<group>";
-		};
 		1B5EE2E51E673892002C2F06 = {
 			isa = PBXGroup;
 			children = (
@@ -226,7 +216,6 @@
 				1B3DB4681EA4E8200009A289 /* Feeding */,
 				1BD703B81E74A29400947DF0 /* Management */,
 				1B3DB42B1EA118150009A289 /* Births */,
-				1B54DF761E9FDA390017E5C1 /* Vaccine */,
 				1B3DB43D1EA375750009A289 /* Security */,
 				1B5EE3001E673892002C2F06 /* Info.plist */,
 				1B5EE2FB1E673892002C2F06 /* Assets.xcassets */,
@@ -404,7 +393,6 @@
 				1B3DB4431EA37B7F0009A289 /* Pest.swift in Sources */,
 				1B3DB4351EA1306E0009A289 /* BirthViewController.swift in Sources */,
 				1BD703AB1E7178E400947DF0 /* Animal.swift in Sources */,
-				1B54DF711E9D43B70017E5C1 /* Controlador.swift in Sources */,
 				1BC668001EA5266F00143ACC /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
