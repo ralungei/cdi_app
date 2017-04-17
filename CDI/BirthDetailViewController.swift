@@ -67,17 +67,17 @@ class BirthDetailViewController: UIViewController {
         
         switch animal!.tipo {
         case "gallina":
-            imagen.image = UIImage(named: "chicken")
+            imagen.image = UIImage(named: "001-cock")
         case "cerdo":
-            imagen.image = UIImage(named: "pig")
+            imagen.image = UIImage(named: "002-pig")
         case "oveja":
-            imagen.image = UIImage(named: "sheep")
+            imagen.image = UIImage(named: "003-sheep")
         case "conejo":
-            imagen.image = UIImage(named: "rabbit")
+            imagen.image = UIImage(named: "004-rabbit")
         case "cabra":
-            imagen.image = UIImage(named: "deer")
+            imagen.image = UIImage(named: "005-goat")
         case "vaca":
-            imagen.image = UIImage(named: "cow")
+            imagen.image = UIImage(named: "006-cow")
         default:
             break
         }

@@ -12,17 +12,17 @@ class Vaccine {
     
     //MARK: Properties
     
+    var id: String
     var nombre: String
     var fecha: String
-    var dosis: String
     
     
     //MARK: Initialization
     
-    init?(nombre: String, fecha: String, dosis: String){
+    init?(id: String, nombre: String, fecha: String){
+        self.id = id
         self.nombre = nombre
         self.fecha = fecha
-        self.dosis = dosis
     }
 }
 

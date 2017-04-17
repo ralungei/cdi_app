@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnimalDetailViewController: UIViewController {
+class AnimalDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var imagen: UIImageView!
     @IBOutlet weak var idLabel: UILabel!
@@ -26,7 +26,7 @@ class AnimalDetailViewController: UIViewController {
 
     @IBAction func deleteAction(_ sender: Any) {
         // Confirmation alert
-        let deleteConfirmation = UIAlertController.init(title: nil, message: "Seleccione el motivo de la baja.", preferredStyle: .actionSheet)
+        let deleteConfirmation = UIAlertController.init(title: nil, message: "Seleccione el motivo de la baja.", preferredStyle: .alert)
         
         let soldAction = UIAlertAction(title: "Venta", style: .destructive, handler: {(action)  in
             self.performSegue(withIdentifier: "unwindToAnimalList", sender: self)
@@ -51,13 +51,27 @@ class AnimalDetailViewController: UIViewController {
         
     }
     
+    @IBOutlet weak var pillsTableView: UITableView!
+    @IBOutlet weak var vaccinesTableView: UITableView!
     
     var animal: Animal?
+    var pills = [Pill]()
+    var vaccines = [Vaccine]()
     
     let calendar = NSCalendar.current
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Setting table views
+        pillsTableView.delegate = self
+        pillsTableView.dataSource = self
+
+        vaccinesTableView.delegate = self
+        vaccinesTableView.dataSource = self
+
+        pillsTableView.tableFooterView = UIView()
+        vaccinesTableView.tableFooterView = UIView()
         
         // Label underlines
         codFamLabel.underlined()
@@ -120,11 +134,10 @@ class AnimalDetailViewController: UIViewController {
         default:
             break
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        
+        // LOAD DATA
+        loadSampleData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -144,6 +157,64 @@ class AnimalDetailViewController: UIViewController {
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }
     }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var count:Int?
+        
+        if tableView == self.pillsTableView{
+            count = pills.count
+        }
+        else if tableView == self.vaccinesTableView {
+            count = vaccines.count
+        }
+        return count!
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if tableView == self.pillsTableView{
+            let cell = self.pillsTableView.dequeueReusableCell(withIdentifier: "cell") as! PillTableViewCell!
+            
+            cell?.id.text = pills[indexPath.row].id
+            cell?.nombre.text = pills[indexPath.row].nombre
+            cell?.dosis.text = pills[indexPath.row].dosis
+            cell?.toma.text = pills[indexPath.row].toma
+            cell?.fechaInicio.text = pills[indexPath.row].fechaInicio
+            cell?.fechaFin.text = pills[indexPath.row].fechaFin
+            return cell!
+        }
+            
+        else if tableView == self.vaccinesTableView {
+            let cell = self.vaccinesTableView.dequeueReusableCell(withIdentifier: "cell") as! VaccineTableViewCell!
+            
+            cell?.id.text = vaccines[indexPath.row].id
+            cell?.nombre.text = vaccines[indexPath.row].nombre
+            cell?.fecha.text = vaccines[indexPath.row].fecha
+            return cell!
+        }
+        return UITableViewCell()
+    }
+
+    
+    // MARK: - Data
+    
+    private func loadSampleData() {
+        let pill1 = Pill(id: "2742", nombre: "Dipirona", dosis: "20 ml", toma: "1/2", fechaInicio: "17/04/2017", fechaFin: "21/04/2017")!
+        let pill2 = Pill(id: "3342", nombre: "Tylogent", dosis: "10 ml", toma: "2", fechaInicio: "18/06/2017", fechaFin: "31/04/2017")!
+
+        
+        let vaccine1 = Vaccine(id: "1525", nombre: "Derrienfe", fecha: "23/01/2017")!
+        let vaccine2 = Vaccine(id: "8148", nombre: "Silvet VAC", fecha: "24/02/2017")!
+        
+        pills += [pill1, pill2]
+        vaccines += [vaccine1, vaccine2]
+    }
+    
+    
+    
+    
+    
 }
 
 

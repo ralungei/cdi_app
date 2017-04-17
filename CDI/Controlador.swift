@@ -68,7 +68,7 @@ class Controlador: UIViewController, UITableViewDelegate, UITableViewDataSource 
         }
          else if editingStyle == .insert {
          // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-            self.vaccines.append(Vaccine(nombre: "", fecha: "", dosis: "")!)
+            self.vaccines.append(Vaccine(id: "", nombre: "", fecha: "")!)
             tableView.beginUpdates()
             tableView.insertRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
             tableView.endUpdates()
@@ -80,11 +80,11 @@ class Controlador: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     // LOAD Samples
     private func loadSampleVaccines() {
-        guard let vaccine1 = Vaccine(nombre: "Vacuna1", fecha: "12/12/1996", dosis: "3 mg")
+        guard let vaccine1 = Vaccine(id: "3 mg", nombre: "Vacuna1", fecha: "12/12/1996")
             else {
                 fatalError("Unable to instantiate vaccine1")
         }
-        guard let vaccine2 = Vaccine(nombre: "Vacuna2", fecha: "12/12/2000", dosis: "6 mg")
+        guard let vaccine2 = Vaccine(id: "6 mg", nombre: "Vacuna2", fecha: "12/12/2000")
             else {
                 fatalError("Unable to instantiate vaccine1")
         }

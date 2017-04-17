@@ -10,66 +10,92 @@ import UIKit
 
 class TemperatureViewController: UIViewController, UITabBarDelegate {
     
+    var temperaturas = ["19ºC", "20ºC", "18ºC", "19ºC", "20ºC", "20ºC"]
+    var humedades = ["52%", "54%", "56%", "52%", "51%", "56%"]
+    
+    var temperaturasDeseadas = ["20", "20", "19", "18", "20", "20"]
+    var humedadesDeseadas = ["50", "52", "52", "54", "54", "54"]
+    
     @IBOutlet weak var tabBar: UITabBar!
     
     @IBOutlet weak var temperatura: UILabel!
     @IBOutlet weak var humedad: UILabel!
+    
+    @IBOutlet weak var temperaturaButton: UIButton!
+    @IBOutlet weak var humedadButton: UIButton!
+    
+    @IBAction func temperaturaAction(_ sender: Any) {
+        
+        let temperaturaChange = UIAlertController.init(title: nil, message: "Introduzca la temperatura deseada:", preferredStyle: .alert)
+        
+        temperaturaChange.addTextField(configurationHandler: { (textField) in
+            textField.placeholder = "Temperatura"
+            textField.text = self.temperaturasDeseadas[(self.tabBar.selectedItem?.tag)!]
+
+        })
+        
+        let okAction = UIAlertAction(title: "OK", style: .destructive, handler: {(action)  in
+            let textField = temperaturaChange.textFields![0]
+            self.temperaturasDeseadas[(self.tabBar.selectedItem?.tag)!] = textField.text!
+            self.temperaturaButton.titleLabel?.text = "DESEADA: \(textField.text!)ºC"
+
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: { (alert: UIAlertAction!) -> Void in
+            print("cancel")
+        })
+        
+        temperaturaChange.addAction(okAction)
+        temperaturaChange.addAction(cancelAction)
+        
+        temperaturaChange.popoverPresentationController?.sourceView = self.view
+        temperaturaChange.popoverPresentationController?.sourceRect = self.temperaturaButton.accessibilityFrame
+        self.present(temperaturaChange, animated: true, completion: nil)
+    }
+
+    @IBAction func humedadAction(_ sender: Any) {
+        let humedadChange = UIAlertController.init(title: nil, message: "Introduzca la humedad deseada:", preferredStyle: .alert)
+        
+        humedadChange.addTextField(configurationHandler: { (textField) in
+            textField.placeholder = "Humedad"
+            textField.text = self.humedadesDeseadas[(self.tabBar.selectedItem?.tag)!]
+            
+        })
+        
+        let okAction = UIAlertAction(title: "OK", style: .destructive, handler: {(action)  in
+            let textField = humedadChange.textFields![0]
+            self.humedadesDeseadas[(self.tabBar.selectedItem?.tag)!] = textField.text!
+            self.humedadButton.titleLabel?.text = "DESEADA: \(textField.text!)%"
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: { (alert: UIAlertAction!) -> Void in
+            print("cancel")
+        })
+        
+        humedadChange.addAction(okAction)
+        humedadChange.addAction(cancelAction)
+        
+        humedadChange.popoverPresentationController?.sourceView = self.view
+        humedadChange.popoverPresentationController?.sourceRect = self.humedadButton.accessibilityFrame
+        self.present(humedadChange, animated: true, completion: nil)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tabBar.selectedItem = tabBar.items?[0]
 
-        self.tabBar.delegate = self
     }
-    
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        print(item.tag)
-        switch(item.tag){
-        case 0:
-            temperatura.text = "19ºC"
-            humedad.text = "52%"
-        case 1:
-            temperatura.text = "20ºC"
-            humedad.text = "55%"
-        case 2:
-            temperatura.text = "18ºC"
-            humedad.text = "54%"
-        case 3:
-            temperatura.text = "18ºC"
-            humedad.text = "54%"
-        case 4:
-            temperatura.text = "19ºC"
-            humedad.text = "56%"
-        case 5:
-            temperatura.text = "20ºC"
-            humedad.text = "55%"
-        default:
-            temperatura.text = "ERROR"
-        }
+        temperatura.text = temperaturas[item.tag]
+        humedad.text = humedades[item.tag]
+        temperaturaButton.titleLabel?.text = "DESEADA: \(temperaturasDeseadas[item.tag])ºC"
+        humedadButton.titleLabel?.text = "DESEADA: \(humedadesDeseadas[item.tag])%"
     }
-    
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        switch(tabBar.selectedItem!){
-        case tabBar.items![0]:
-            temperatura.text = "19ºC"
-        case tabBar.items![1]:
-            temperatura.text = "20ºC"
-        case tabBar.items![2]:
-            temperatura.text = "18ºC"
-        case tabBar.items![3]:
-            temperatura.text = "18ºC"
-        case tabBar.items![4]:
-            temperatura.text = "19ºC"
-        case tabBar.items![5]:
-            temperatura.text = "20ºC"
-        default:
-            temperatura.text = "ERROR"
-        }
-    }
-    
-    
+
     
     /*
     // MARK: - Navigation
