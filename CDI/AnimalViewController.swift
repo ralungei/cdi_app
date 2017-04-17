@@ -9,10 +9,16 @@
 import UIKit
 import os.log
 
-class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class AnimalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
     // MARK: Properties
+    
+    @IBOutlet weak var medicamentosTableView: UITableView!
+    @IBOutlet weak var vacunasTableView: UITableView!
+    
     var animal: Animal?
+    var vaccines = [Vaccine]()
+    var pills = [Pill]()
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var codFamTextField: UITextField!
@@ -144,6 +150,16 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
         estadoPickerView.delegate = self
         estadoPickerView.tag = 2
         estadoTextField.inputView = estadoPickerView
+        
+        // Data
+        loadSampleData()
+        
+        // Setting tableviews
+        self.medicamentosTableView.setEditing(true, animated: true)
+        self.vacunasTableView.setEditing(true, animated: true)
+        
+        self.medicamentosTableView.tableFooterView = UIView()
+        self.vacunasTableView.tableFooterView = UIView()
     }
     
     //MARK: Picker funcs
@@ -261,6 +277,107 @@ class AnimalViewController: UIViewController, UITextFieldDelegate, UINavigationC
     //MARK: Hide keyboard when user touches outside keyboard
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    
+    //MARK: TableView
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == medicamentosTableView{
+            return (self.pills.count + 1)
+
+        }
+        else if tableView == vacunasTableView{
+            return (self.vaccines.count + 1)
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == medicamentosTableView{
+            if(indexPath.row < self.pills.count){
+                let cell = self.medicamentosTableView.dequeueReusableCell(withIdentifier: "cell") as! VaccineTableViewCell!
+                cell?.nombre.text = vaccines[indexPath.row].nombre
+                cell?.fecha.text = vaccines[indexPath.row].fecha
+                
+                return cell!
+            }
+            else{
+                let cell = self.vacunasTableView.dequeueReusableCell(withIdentifier: "finalCell") as UITableViewCell!
+                cell!.textLabel?.text = "añadir vacuna"
+                return cell!
+            }
+        }
+            
+        else if tableView == vacunasTableView{
+            if(indexPath.row < self.vaccines.count){
+                let cell = self.vacunasTableView.dequeueReusableCell(withIdentifier: "cell") as! VaccineTableViewCell!
+                cell?.nombre.text = vaccines[indexPath.row].nombre
+                cell?.fecha.text = vaccines[indexPath.row].fecha
+                
+                return cell!
+            }
+            else{
+                let cell = self.vacunasTableView.dequeueReusableCell(withIdentifier: "finalCell") as UITableViewCell!
+                cell!.textLabel?.text = "añadir vacuna"
+                return cell!
+            }
+        }
+        
+        return UITableViewCell()
+    }
+    
+
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if (indexPath.row == self.vaccines.count) {
+            return UITableViewCellEditingStyle.insert
+        }
+        else{
+            return UITableViewCellEditingStyle.delete
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            if tableView == medicamentosTableView{
+                self.pills.remove(at: indexPath.row)
+            }
+            else if tableView == vacunasTableView{
+                self.vaccines.remove(at: indexPath.row)
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        else if editingStyle == .insert {
+            
+            if tableView == medicamentosTableView{
+                self.pills.append(Pill(id: "", nombre: "", dosis: "", toma: "", fechaInicio: "", fechaFin: "")!)
+            }
+            else if tableView == vacunasTableView{
+                self.vaccines.append(Vaccine(id: "", nombre: "", fecha: "")!)
+            }
+            
+
+            tableView.beginUpdates()
+            tableView.insertRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
+            tableView.endUpdates()
+            //       tableView.reloadData()
+            
+        }
+    }
+    
+    //MARK: Data
+    private func loadSampleData() {
+        let pill1 = Pill(id: "2742", nombre: "Dipirona", dosis: "20 ml", toma: "1/2", fechaInicio: "17/04/2017", fechaFin: "21/04/2017")!
+        let pill2 = Pill(id: "3342", nombre: "Tylogent", dosis: "10 ml", toma: "2", fechaInicio: "18/06/2017", fechaFin: "31/04/2017")!
+        
+        
+        let vaccine1 = Vaccine(id: "1525", nombre: "Derrienfe", fecha: "23/01/2017")!
+        let vaccine2 = Vaccine(id: "8148", nombre: "Silvet VAC", fecha: "24/02/2017")!
+        
+        pills += [pill1, pill2]
+        vaccines += [vaccine1, vaccine2]
     }
  
 

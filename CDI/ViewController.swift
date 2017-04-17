@@ -7,12 +7,31 @@
 //
 
 import UIKit
+import UserNotifications
 
 class ViewController: UIViewController {
+    
+    @IBAction func robo(_ sender: Any) {
+        let content = UNMutableNotificationContent()
+        content.title = "Emergencia!"
+        content.subtitle = "Alarma antirrobo"
+        content.body = "La alarma antirrobo se ha activado!"
+        content.badge = 1
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge], completionHandler: {didAllow, error in})
+        
+
     }
 
     override func didReceiveMemoryWarning() {
