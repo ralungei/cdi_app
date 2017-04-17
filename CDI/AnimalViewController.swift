@@ -92,6 +92,9 @@ class AnimalViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Set up views if editing an existing animal.
         if let animal = animal {
             
+            // Data
+            loadSampleData()
+            
             navigationItem.title = ""
             let tipo = animal.tipo
             
@@ -151,10 +154,14 @@ class AnimalViewController: UIViewController, UITableViewDelegate, UITableViewDa
         estadoPickerView.tag = 2
         estadoTextField.inputView = estadoPickerView
         
-        // Data
-        loadSampleData()
         
         // Setting tableviews
+        self.medicamentosTableView.delegate = self
+        self.vacunasTableView.delegate = self
+        
+        self.medicamentosTableView.dataSource = self
+        self.vacunasTableView.dataSource = self
+        
         self.medicamentosTableView.setEditing(true, animated: true)
         self.vacunasTableView.setEditing(true, animated: true)
         
@@ -296,22 +303,27 @@ class AnimalViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == medicamentosTableView{
             if(indexPath.row < self.pills.count){
-                let cell = self.medicamentosTableView.dequeueReusableCell(withIdentifier: "cell") as! VaccineTableViewCell!
-                cell?.nombre.text = vaccines[indexPath.row].nombre
-                cell?.fecha.text = vaccines[indexPath.row].fecha
+                let cell = self.medicamentosTableView.dequeueReusableCell(withIdentifier: "cell") as! PillInputTableViewCell!
+                
+                cell?.id.text = pills[indexPath.row].id
+                cell?.nombre.text = pills[indexPath.row].nombre
+                cell?.dosis.text = pills[indexPath.row].dosis
+                cell?.fechaInicio.text = pills[indexPath.row].fechaInicio
+                cell?.fechaFin.text = pills[indexPath.row].fechaFin
                 
                 return cell!
             }
             else{
                 let cell = self.vacunasTableView.dequeueReusableCell(withIdentifier: "finalCell") as UITableViewCell!
-                cell!.textLabel?.text = "añadir vacuna"
+                cell!.textLabel?.text = "añadir medicamento"
                 return cell!
             }
         }
             
         else if tableView == vacunasTableView{
             if(indexPath.row < self.vaccines.count){
-                let cell = self.vacunasTableView.dequeueReusableCell(withIdentifier: "cell") as! VaccineTableViewCell!
+                let cell = self.vacunasTableView.dequeueReusableCell(withIdentifier: "cell") as! VaccineInputTableViewCell!
+                cell?.id.text = vaccines[indexPath.row].id
                 cell?.nombre.text = vaccines[indexPath.row].nombre
                 cell?.fecha.text = vaccines[indexPath.row].fecha
                 
@@ -330,12 +342,24 @@ class AnimalViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        if (indexPath.row == self.vaccines.count) {
-            return UITableViewCellEditingStyle.insert
+        if tableView == medicamentosTableView{
+            if (indexPath.row == self.pills.count) {
+                return UITableViewCellEditingStyle.insert
+            }
+            else{
+                return UITableViewCellEditingStyle.delete
+            }
         }
-        else{
-            return UITableViewCellEditingStyle.delete
+        else if tableView == vacunasTableView{
+            if (indexPath.row == self.vaccines.count) {
+                return UITableViewCellEditingStyle.insert
+            }
+            else{
+                return UITableViewCellEditingStyle.delete
+            }
         }
+        
+        return UITableViewCellEditingStyle.insert
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

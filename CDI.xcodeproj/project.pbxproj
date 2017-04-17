@@ -51,6 +51,8 @@
 		1BD703AF1E72CFB100947DF0 /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD703AE1E72CFB100947DF0 /* AnimalDetailViewController.swift */; };
 		1BD703B31E74642F00947DF0 /* UnderlinedField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD703B21E74642F00947DF0 /* UnderlinedField.swift */; };
 		1BD703B51E74A26A00947DF0 /* UnderlinedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD703B41E74A26A00947DF0 /* UnderlinedLabel.swift */; };
+		1BDD57DE1EA54A1500BA7508 /* PillInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDD57DD1EA54A1500BA7508 /* PillInputTableViewCell.swift */; };
+		1BDD57E01EA54A2600BA7508 /* VaccineInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDD57DF1EA54A2600BA7508 /* VaccineInputTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +105,8 @@
 		1BD703AE1E72CFB100947DF0 /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
 		1BD703B21E74642F00947DF0 /* UnderlinedField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnderlinedField.swift; path = ../UnderlinedField.swift; sourceTree = "<group>"; };
 		1BD703B41E74A26A00947DF0 /* UnderlinedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedLabel.swift; sourceTree = "<group>"; };
+		1BDD57DD1EA54A1500BA7508 /* PillInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PillInputTableViewCell.swift; sourceTree = "<group>"; };
+		1BDD57DF1EA54A2600BA7508 /* VaccineInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaccineInputTableViewCell.swift; sourceTree = "<group>"; };
 		1BE797151E6888B300D74D12 /* CDI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CDI-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -263,6 +267,8 @@
 				1BD703AC1E71A38200947DF0 /* AnimalViewController.swift */,
 				1B3DB4271EA0D4690009A289 /* AnimalTabController.swift */,
 				1BD703AE1E72CFB100947DF0 /* AnimalDetailViewController.swift */,
+				1BDD57DD1EA54A1500BA7508 /* PillInputTableViewCell.swift */,
+				1BDD57DF1EA54A2600BA7508 /* VaccineInputTableViewCell.swift */,
 				1B54DF721E9E47C80017E5C1 /* Vaccine.swift */,
 				1B3DB45E1EA443670009A289 /* VaccineTableViewCell.swift */,
 				1B3DB4561EA441370009A289 /* Pill.swift */,
@@ -362,6 +368,7 @@
 				1BD703A91E6F169200947DF0 /* ManagementTableViewController.swift in Sources */,
 				1B3DB42D1EA119120009A289 /* Birth.swift in Sources */,
 				1B3DB4651EA4C8E10009A289 /* Feeding.swift in Sources */,
+				1BDD57DE1EA54A1500BA7508 /* PillInputTableViewCell.swift in Sources */,
 				1B3DB4471EA37DBC0009A289 /* PestInputTableViewCell.swift in Sources */,
 				1BD703B31E74642F00947DF0 /* UnderlinedField.swift in Sources */,
 				1B1D29BF1E8AAF3A000772B6 /* csv.swift in Sources */,
@@ -371,6 +378,7 @@
 				1B3DB4611EA4B6190009A289 /* FeedingTableViewController.swift in Sources */,
 				1BD703B51E74A26A00947DF0 /* UnderlinedLabel.swift in Sources */,
 				1BD703AD1E71A38200947DF0 /* AnimalViewController.swift in Sources */,
+				1BDD57E01EA54A2600BA7508 /* VaccineInputTableViewCell.swift in Sources */,
 				1B5EE2F41E673892002C2F06 /* ViewController.swift in Sources */,
 				1BD7039B1E6D94E300947DF0 /* SWRevealViewController.m in Sources */,
 				1B3DB4281EA0D4690009A289 /* AnimalTabController.swift in Sources */,
